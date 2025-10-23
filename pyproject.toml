@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qggroi"
+version = "1.0.0"
+authors = [
+  { name="Harry Cooke", email="hcooke006@aol.com" },
+]
+description = "ROI identification algorithm for quantum gravity gradiometry."
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.urls]
+Homepage = "https://github.com/hacooke/qggroi"
+Issues = "https://github.com/hacooke/qggroi/issues"
