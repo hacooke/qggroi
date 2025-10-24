@@ -1,3 +1,5 @@
+import sys
+
 from qggroi import data as qgg_data
 from qggroi import calculate as qgg_calculate
 from qggroi import locate as qgg_locate
@@ -7,7 +9,7 @@ from qggroi import output as qgg_output
 
 def main():
     # Core algorithm
-    cleaned_data = qgg_data.read_and_clean_data('extracted.db')
+    cleaned_data = qgg_data.read_and_clean_data(sys.argv[1])
     decorated_data, per_pixel_stats = qgg_calculate.decorate_data(cleaned_data)
     rois = qgg_locate.locate_rois(per_pixel_stats['std']['diff'], limit=8)
     roi_summary = qgg_output.summarise_rois(rois, df_stat=per_pixel_stats)

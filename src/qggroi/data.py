@@ -14,7 +14,7 @@ def read_and_clean_data(db_file: str) -> pandas.DataFrame:
 
 
 def read_from_database(db_file: str) -> pandas.DataFrame:
-    with sqlite3.connect(db_file) as db:
+    with sqlite3.connect(db_file, uri=False) as db:
         df = pandas.read_sql_query('select * from shot_data;', db)
     return df
 

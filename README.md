@@ -5,8 +5,10 @@ output data from atom interferometers used for quantum gravity gradiometry.
 
 ## Installation
 
-Clone the repository and run `pip intall .` from within the top-level directory.
+Clone the repository and run `pip intall .` from within the top-level
+directory.
 
 ## Usage
 
-Run with `python -m qggroi`.
+Make a directory named `output` inside the directory where you will run the
+pacakage.  Run with `python -m qggroi <path/to/dbfile>`.
