@@ -1,9 +1,11 @@
+from typing import List
+
 import pandas
 
 from qggroi.roi import ROI
 
 
-def summarise_rois(rois: list[ROI], **kwargs) -> str:
+def summarise_rois(rois: List[ROI], **kwargs) -> str:
     rtn = ''
     delim = f'{"":=<80}\n'
     for i, roi in enumerate(rois):
@@ -25,7 +27,7 @@ def roi_summary(roi: ROI, df_stat: pandas.DataFrame) -> str:
     )
 
 
-def summarise_rois_tex(rois: list[ROI], **kwargs) -> str:
+def summarise_rois_tex(rois: List[ROI], **kwargs) -> str:
     rtn = ''
     for i, roi in enumerate(rois):
         rtn += roi_summary_tex(i, roi, **kwargs) + '\n'

@@ -1,8 +1,10 @@
+from typing import List
+
 import numpy as np
 
 
 class ROI:
-    def __init__(self, bounds: list[list[int, int]]):
+    def __init__(self, bounds: List[List[int]]):
         assert len(bounds) == 2
         assert len(bounds[0]) == 2
         assert len(bounds[1]) == 2

@@ -1,10 +1,12 @@
+from typing import List, Tuple
+
 import pandas
 import numpy as np
 
 from qggroi.roi import ROI
 
 
-def decorate_data(df: pandas.DataFrame) -> tuple[pandas.DataFrame]:
+def decorate_data(df: pandas.DataFrame) -> Tuple[pandas.DataFrame]:
     df['diff'] = df.apply(lambda row: row['top'] - row['bottom'], axis=1)
     image_columns = ['top', 'bottom', 'diff']
     df_stacked_images = df[image_columns].stack().groupby(level=1)
@@ -18,7 +20,7 @@ def decorate_data(df: pandas.DataFrame) -> tuple[pandas.DataFrame]:
     return df, df_stats
 
 
-def integrate_rois(df: pandas.DataFrame, rois: list[ROI]) -> pandas.DataFrame:
+def integrate_rois(df: pandas.DataFrame, rois: List[ROI]) -> pandas.DataFrame:
     """Decorates dataframe with additional columns giving ROI integrals in each shot."""
     for detector in ['top', 'bottom']:
         roi_integrals = f'{detector}_roi_integrals'

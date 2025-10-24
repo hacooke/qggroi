@@ -5,7 +5,7 @@ return a matplotlib Figure. The user can then choose to display the figure
 interactively (with matplotlib.pyplot.show()) or save the figure (handled by
 the included save_figure method).
 """
-from typing import Callable, NamedTuple, Optional
+from typing import Callable, NamedTuple, Optional, Tuple, List
 from math import sqrt
 
 import pandas
@@ -70,8 +70,8 @@ def plot_image(data: np.ndarray) -> Figure:
 
 
 def plot_step(
-    x: np.ndarray | list,
-    y: np.ndarray | list,
+    x: np.ndarray,
+    y: np.ndarray,
     xlabel: str = '$x$',
     ylabel: str = '$y$',
     **kwargs
@@ -134,7 +134,7 @@ def image_profile_multiplot(data: np.ndarray) -> MultiPlot:
     return fig, ax_main, ax_xprofile, ax_yprofile, ax_cbar
 
 
-def plot_per_roi_lissajous(df: pandas.DataFrame, **kwargs) -> list[Figure]:
+def plot_per_roi_lissajous(df: pandas.DataFrame, **kwargs) -> List[Figure]:
     rtn = []
     for i in range(len(df['top_roi_integrals'][0])):
         top_ints = [roi_ints[i] for roi_ints in df['top_roi_integrals']]
@@ -146,7 +146,7 @@ def plot_per_roi_lissajous(df: pandas.DataFrame, **kwargs) -> list[Figure]:
     return rtn
 
 
-def plot_per_roi_integrals(df: pandas.DataFrame, **kwargs) -> list[Figure]:
+def plot_per_roi_integrals(df: pandas.DataFrame, **kwargs) -> List[Figure]:
     rtn = []
     for i in range(len(df['top_roi_integrals'][0])):
         top_ints = [roi_ints[i] for roi_ints in df['top_roi_integrals']]
@@ -183,7 +183,7 @@ def plot_total_integrals(df: pandas.DataFrame, **kwargs) -> Figure:
     return fig
 
 
-def plot_poisson_error(x, y, ax: Axes = None, whicherr: str = 'y', **kwargs) -> tuple[Figure, Axes]:
+def plot_poisson_error(x, y, ax: Axes = None, whicherr: str = 'y', **kwargs) -> Tuple[Figure, Axes]:
     if ax is None:
         fig = plt.figure(figsize=(8, 6))
         ax = fig.add_axes([.1, .1, .8, .85])
@@ -198,8 +198,8 @@ def plot_poisson_error(x, y, ax: Axes = None, whicherr: str = 'y', **kwargs) -> 
 def profile(
     data: np.ndarray,
     which: str = 'x',
-    bounds: list[int | None] = [None, None]
-) -> tuple[np.ndarray, np.ndarray]:
+    bounds: List[int] = [None, None]
+) -> Tuple[np.ndarray, np.ndarray]:
     if which == 'x':
         return np.arange(data.shape[1]), np.mean(data[bounds[0]:bounds[1], :], axis=0)
     else:

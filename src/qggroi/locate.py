@@ -1,4 +1,5 @@
 from math import floor, ceil
+from typing import List
 
 import numpy as np
 import scipy.signal as sp_sig
@@ -6,7 +7,7 @@ import scipy.signal as sp_sig
 from qggroi.roi import ROI
 
 
-def locate_rois(data: np.ndarray, limit: int = None) -> list[ROI]:
+def locate_rois(data: np.ndarray, limit: int = None) -> List[ROI]:
     """Locate Regions of Interest in data.
 
     Performs 2D peak search by identifying peaks in a 1D profile of the y-axis, then within each
@@ -34,7 +35,7 @@ def find_peak_1d(
         data: np.ndarray,
         relative_prominence: float = 0.01,
         stretch: int = 0
-) -> list[list[int, int]]:
+) -> List[List[int]]:
     """Finds peaks in a 1D distribution, returns edges of each peak found.
 
     Keyword arguments:
